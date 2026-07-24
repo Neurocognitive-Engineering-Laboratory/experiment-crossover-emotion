@@ -1,0 +1,10 @@
+- missing data
+- outliers
+- reaction-time exclusions
+- alternative RT transformations
+- speed-accuracy trade-off
+- period effects
+- sequence effects
+- carryover effects
+- alternative covariate specifications
+- influential participants
