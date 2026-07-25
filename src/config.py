@@ -79,6 +79,21 @@ INTERIM_DATA_DIR = DATA_DIR / "interim"
 PROCESSED_DATA_DIR = DATA_DIR / "processed"
 DICTIONARY_DIR = DATA_DIR / "dictionary"
 
+# =====================================================================
+# RAW DATASETS
+# =====================================================================
+
+RAW_SAM_FILE = (
+    RAW_DATA_DIR / "DBs_SAMs_V9_200626.csv"
+)
+
+RAW_NBACK2_FILE = (
+    RAW_DATA_DIR / "DBS_N_back_2_01072026.sav"
+)
+
+RAW_NBACK4_FILE = (
+    RAW_DATA_DIR / "n_back_4.xlsx"
+)
 
 # =====================================================================
 # FIGURE PATHS

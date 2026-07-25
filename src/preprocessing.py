@@ -596,3 +596,49 @@ def check_session_counts(
         counts["n_sessions"]
         != expected_sessions
     ].copy()
+    
+    
+    
+def reshape_sam_valence(
+    data: pd.DataFrame,
+    participant_column: str,
+) -> pd.DataFrame:
+    """
+    Convert SAM valence measurements from wide to long format.
+    """
+
+    sam_columns = [
+        column
+        for column in data.columns
+        if column.startswith("sam_neg_")
+        or column.startswith("sam_pos_")
+    ]
+
+    long = data.melt(
+        id_vars=[participant_column],
+        value_vars=sam_columns,
+        var_name="sam_measure",
+        value_name="sam_valence",
+    )
+
+    long["emotion"] = np.where(
+        long["sam_measure"].str.contains(
+            "_neg_"
+        ),
+        "Negative",
+        "Positive",
+    )
+
+    long["timepoint"] = (
+        long["sam_measure"]
+        .str.extract(
+            r"_v(.+?)_mean"
+        )[0]
+    )
+
+    long["sam_valence"] = pd.to_numeric(
+        long["sam_valence"],
+        errors="coerce",
+    )
+
+    return long
