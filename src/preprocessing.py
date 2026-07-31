@@ -1214,3 +1214,70 @@ def derive_experimental_sequence(
     )
 
     return df
+
+
+# ---------------------------------------------------------------------
+# SAM long-format conversion
+# ---------------------------------------------------------------------
+
+
+def reshape_sam_long(
+    data: pd.DataFrame,
+) -> pd.DataFrame:
+    """
+    Convert SAM measurements from wide to long format.
+
+    Expected column format:
+        sam_neg_v1_mean
+        sam_pos_v1_mean
+        etc.
+    """
+
+    df = data.copy()
+
+    sam_columns = [
+        column
+        for column in df.columns
+        if column.startswith("sam_neg_")
+        or column.startswith("sam_pos_")
+    ]
+
+    sam_long = df[
+        ["participant_id"] + sam_columns
+    ].melt(
+        id_vars="participant_id",
+        value_vars=sam_columns,
+        var_name="sam_variable",
+        value_name="sam_score",
+    )
+
+    sam_long["emotion"] = np.where(
+        sam_long[
+            "sam_variable"
+        ].str.startswith(
+            "sam_neg_"
+        ),
+        "Negative",
+        "Positive",
+    )
+
+    sam_long["timepoint"] = (
+        sam_long[
+            "sam_variable"
+        ]
+        .str.extract(
+            r"_v(.+?)_mean",
+            expand=False,
+        )
+    )
+
+    sam_long[
+        "sam_score"
+    ] = pd.to_numeric(
+        sam_long[
+            "sam_score"
+        ],
+        errors="coerce",
+    )
+
+    return sam_long
