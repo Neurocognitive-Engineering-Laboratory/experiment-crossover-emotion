@@ -1160,3 +1160,57 @@ def flag_reaction_times(
     )
 
     return df
+
+# ---------------------------------------------------------------------
+# Derive experimental sequence from group_id
+# ---------------------------------------------------------------------
+
+def derive_experimental_sequence(
+    data: pd.DataFrame,
+) -> pd.DataFrame:
+    """
+    Derive experimental category and sequence from group_id.
+    """
+
+    df = data.copy()
+
+    category_map = {
+        1: "I",
+        2: "II",
+        3: "III",
+        4: "IV",
+    }
+
+    sequence_map = {
+        1: "A_B",
+        2: "B_A",
+        3: "C_D",
+        4: "D_C",
+    }
+
+    group_sequence_map = {
+        1: "A to B",
+        2: "B to A",
+        3: "C to D",
+        4: "D to C",
+    }
+
+    df["category"] = (
+        df["group_id"]
+        .map(category_map)
+        .astype("string")
+    )
+
+    df["sequence"] = (
+        df["group_id"]
+        .map(sequence_map)
+        .astype("string")
+    )
+
+    df["group_sequence"] = (
+        df["group_id"]
+        .map(group_sequence_map)
+        .astype("string")
+    )
+
+    return df
