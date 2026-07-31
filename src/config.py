@@ -79,6 +79,11 @@ INTERIM_DATA_DIR = DATA_DIR / "interim"
 PROCESSED_DATA_DIR = DATA_DIR / "processed"
 DICTIONARY_DIR = DATA_DIR / "dictionary"
 
+ANALYSIS_DATASET_FILE = (
+    PROCESSED_DATA_DIR
+    / "analysis_dataset.csv"
+)
+
 # =====================================================================
 # RAW DATASETS
 # =====================================================================
@@ -143,6 +148,7 @@ REPORTS_DIR = PROJECT_ROOT / "reports"
 
 REPORTS_TECHNICAL_DIR = REPORTS_DIR / "technical"
 TABLES_DIR = REPORTS_DIR / "tables"
+TABLES_DIR_EXPLORATORY = TABLES_DIR / "exploratory"
 FINAL_REPORT_DIR = REPORTS_DIR / "final_report"
 
 
