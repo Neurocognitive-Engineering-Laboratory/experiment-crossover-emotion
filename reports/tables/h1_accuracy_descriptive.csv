@@ -1,0 +1,4 @@
+emotion_condition,participants,trials,correct,accuracy
+Negative,22,5940,4978,0.838047138047138
+Neutral,23,5940,5049,0.85
+Positive,22,5940,5055,0.851010101010101

@@ -1220,7 +1220,6 @@ def derive_experimental_sequence(
 # SAM long-format conversion
 # ---------------------------------------------------------------------
 
-
 def reshape_sam_long(
     data: pd.DataFrame,
 ) -> pd.DataFrame:
@@ -1281,3 +1280,55 @@ def reshape_sam_long(
     )
 
     return sam_long
+
+
+# ---------------------------------------------------------------------
+# Derive emotional condition
+# ---------------------------------------------------------------------
+
+def derive_emotion_condition(
+    data: pd.DataFrame,
+) -> pd.DataFrame:
+    """
+    Derive emotional condition for each n-back block.
+
+    n_back1 is the pre-intervention neutral baseline.
+
+    Groups:
+        A / C -> Positive
+        B / D -> Negative
+    """
+
+    df = data.copy()
+
+    emotion_map = {
+        "A": "Positive",
+        "B": "Negative",
+        "C": "Positive",
+        "D": "Negative",
+    }
+
+    df["emotion_condition"] = "Neutral"
+
+    post_mask = (
+        df["block_name"]
+        .isin(
+            [
+                "n_back2",
+                "n_back3",
+            ]
+        )
+    )
+
+    df.loc[
+        post_mask,
+        "emotion_condition",
+    ] = (
+        df.loc[
+            post_mask,
+            "participant_group",
+        ]
+        .map(emotion_map)
+    )
+
+    return df

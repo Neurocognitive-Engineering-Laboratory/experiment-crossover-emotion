@@ -151,6 +151,7 @@ TABLES_DIR = REPORTS_DIR / "tables"
 TABLES_DIR_EXPLORATORY = TABLES_DIR / "exploratory"
 FINAL_REPORT_DIR = REPORTS_DIR / "final_report"
 
+TABLES_DIR_HYPOTHESIS = TABLES_DIR / "hypothesis"
 
 # =====================================================================
 # DOCUMENTATION PATHS
