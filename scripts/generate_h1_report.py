@@ -335,6 +335,21 @@ faster responses compared with the neutral baseline.
 """.strip()
 
 
+DECISION_RULE_TEXT = """
+H1 supported
+    if there is clear evidence of differences
+    between emotional conditions in accuracy,
+    RT, or both.
+
+H1 partially supported
+    if differences arise in only one outcome
+    or in only one specific contrast.
+
+H1 not supported
+    if there is no evidence of relevant differences
+    between conditions.
+"""
+
 INTERPRETATION_TEXT = """
 Hypothesis 1 was partially supported.
 
@@ -715,6 +730,21 @@ def create_docx_report() -> None:
     # Interpretation
     # --------------------------------------------------------------
 
+    document.add_heading(
+        "Decision rules",
+        level=1,
+    )
+    
+    for paragraph_text in (
+        DECISION_RULE_TEXT.split(
+            "\n\n"
+        )
+    ):
+    
+        document.add_paragraph(
+            paragraph_text
+        )
+    
     document.add_heading(
         "Interpretation",
         level=1,
