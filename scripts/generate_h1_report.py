@@ -335,7 +335,7 @@ faster responses compared with the neutral baseline.
 """.strip()
 
 
-DECISION_RULE_TEXT = """
+DECISION_RULES_TEXT = """
 H1 supported
     if there is clear evidence of differences
     between emotional conditions in accuracy,
@@ -736,7 +736,7 @@ def create_docx_report() -> None:
     )
     
     for paragraph_text in (
-        DECISION_RULE_TEXT.split(
+        DECISION_RULES_TEXT.split(
             "\n\n"
         )
     ):
@@ -1311,6 +1311,32 @@ def create_pdf_report() -> None:
     # Interpretation
     # --------------------------------------------------------------
 
+    story.append(
+        Spacer(
+            1,
+            15,
+        )
+    )
+    
+    story.append(
+        Paragraph(
+            "Decision rules",
+            heading1,
+        )
+    )
+    
+    for text in (
+        DECISION_RULES_TEXT
+        .split("\n\n")
+    ):
+    
+        story.append(
+            Paragraph(
+                text,
+                body_style,
+            )
+        )
+            
     story.append(
         Spacer(
             1,
