@@ -1,21 +1,21 @@
 """
-Generate the final Hypothesis 2 scientific report.
+Generate the final Hypothesis 4 scientific report.
 """
 
 from src import config as cfg
 
 from src.reporting.hypothesis import (
-    Hypothesis2Report,
+    Hypothesis4Report,
 )
 
 
 def main() -> None:
 
     print("=" * 70)
-    print("GENERATING HYPOTHESIS 2 REPORT")
+    print("GENERATING HYPOTHESIS 4 REPORT")
     print("=" * 70)
 
-    report = Hypothesis2Report(
+    report = Hypothesis4Report(
         output_directory=(
             cfg.FINAL_REPORT_DIR
         )
@@ -26,7 +26,7 @@ def main() -> None:
     )
 
     print(
-        "\nHypothesis 2 report generated successfully."
+        "\nHypothesis 4 report generated successfully."
     )
 
     print(

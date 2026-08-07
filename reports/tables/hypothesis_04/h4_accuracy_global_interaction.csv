@@ -1,0 +1,2 @@
+index,statistic,pvalue,df_constraint
+"C(emotion_condition, Treatment(reference='Neutral')):C(nback_level, Treatment(reference=1))",[[29.92536352]],4.06137097683631e-05,6

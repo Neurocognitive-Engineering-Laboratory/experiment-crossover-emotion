@@ -1,0 +1,2 @@
+hypothesis,participants,accuracy_observations,rt_observations,accuracy_global_interaction_p,accuracy_global_interaction_significant,rt_global_interaction_p,rt_global_interaction_significant,accuracy_significant_interaction_terms,rt_significant_interaction_terms,assessment
+H4,23,17820,14184,4.06137097683631e-05,True,0.06700931268140237,False,2,2,partially supported
