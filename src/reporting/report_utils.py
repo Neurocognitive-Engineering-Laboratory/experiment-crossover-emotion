@@ -344,3 +344,43 @@ def log_ci_to_percent(
         log_effect_to_percent(lower),
         log_effect_to_percent(upper),
     )
+
+
+def find_column(
+    data: pd.DataFrame,
+    candidates: list[str],
+) -> str:
+    """
+    Return the first available column among a list of aliases.
+
+    This allows reports generated from notebooks with slightly
+    different output schemas to use the same reporting infrastructure.
+    """
+
+    for column in candidates:
+
+        if column in data.columns:
+            return column
+
+    raise KeyError(
+        "None of the expected columns were found.\n"
+        f"Expected one of: {candidates}\n"
+        f"Available columns: {list(data.columns)}"
+    )
+
+
+def get_value(
+    row: pd.Series,
+    candidates: list[str],
+    default: Any = np.nan,
+) -> Any:
+    """
+    Retrieve a value from a Series using multiple possible column names.
+    """
+
+    for column in candidates:
+
+        if column in row.index:
+            return row[column]
+
+    return default
